@@ -7,6 +7,8 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Container, Menu, MenuItem, Select } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+import { Domain } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +25,10 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ButtonAppBar() {
+const Header = () => {
   const classes = useStyles();
+
+  const navigate =  useNavigate();
 
   return (
     <div className={classes.root}>
@@ -34,7 +38,7 @@ export default function ButtonAppBar() {
             <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                 <MenuIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}>
+            <Typography onClick={() => navigate("/")} variant="h6" className={classes.title}>
                 Shinchaku Kusari
             </Typography>
             <Select 
@@ -54,3 +58,5 @@ export default function ButtonAppBar() {
     </div>
   );
 }
+
+export default Header
