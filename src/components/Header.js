@@ -8,6 +8,8 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import { Container, Menu, MenuItem, Select } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
+import { createTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/core/styles';
 import { Domain } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,32 +32,43 @@ const Header = () => {
 
   const navigate =  useNavigate();
 
+  const darkTheme = createTheme({
+    palette: {
+        primary:{ 
+            main:'#fff',
+        },
+        type: 'dark',
+    },
+  });
+
   return (
-    <div className={classes.root}>
-      <AppBar color= "transparent" position="static">
-          <Container>
-            <Toolbar>
-            <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
-                <MenuIcon />
-            </IconButton>
-            <Typography onClick={() => navigate("/")} variant="h6" className={classes.title}>
-                Shinchaku Kusari
-            </Typography>
-            <Select 
-                variant="outlined"
-                style= {{
-                    width:100,
-                    height:40,
-                    marginLeft:15,
-                 }} >
-                <MenuItem value={'USD'}>USD</MenuItem>
-                <MenuItem value={'GBP'}>GBP</MenuItem>
-            </Select>
-            <Button color="inherit">Login</Button>
-            </Toolbar>
-        </Container>
-      </AppBar>
-    </div>
+      <ThemeProvider theme={darkTheme}>
+        <div className={classes.root}>
+        <AppBar color= "transparent" position="static">
+            <Container>
+                <Toolbar>
+                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
+                    <MenuIcon />
+                </IconButton>
+                <Typography onClick={() => navigate("/")} variant="h6" className={classes.title}>
+                    Shinchaku Kusari
+                </Typography>
+                <Select 
+                    variant="outlined"
+                    style= {{ 
+                        width:100,
+                        height:40,
+                        marginLeft:15,
+                    }} >
+                    <MenuItem value={'USD'}>USD</MenuItem>
+                    <MenuItem value={'GBP'}>GBP</MenuItem>
+                </Select>
+                <Button color="inherit">Login</Button>
+                </Toolbar>
+            </Container>
+        </AppBar>
+        </div>
+    </ThemeProvider>
   );
 }
 
