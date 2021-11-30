@@ -3,7 +3,8 @@ import React from 'react'
 
 const useStyles = makeStyles(() => ({
     banner:{
-        backgroundImage: "url(./architect.svg)",        
+        backgroundImage:`url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='199' viewBox='0 0 100 199'%3E%3Cg fill='%2300fff5' fill-opacity='0.15'%3E%3Cpath d='M0 199V0h1v1.99L100 199h-1.12L1 4.22V199H0zM100 2h-.12l-1-2H100v2z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundCcolor: "#000000",  
     } ,
     bannerContent:{
         height:400,
@@ -11,8 +12,6 @@ const useStyles = makeStyles(() => ({
         flexDirection:"column",
         paddingTop:25,
         justifyContent:"space-around",
-        fill:'#00FFF5',
-        fillOpacity:'0.23'
     },
     tagline:{
         display:"flex",
@@ -20,9 +19,10 @@ const useStyles = makeStyles(() => ({
         flexDirection:"column",
         justifyContent:"center",
         textAlign:"center"
-    }
+    }    
 
 }))
+
 
 const Banner = () => {
     const classes = useStyles();
@@ -44,7 +44,7 @@ const Banner = () => {
                     <Typography
                     variant="subtitle2"
                     style={{
-                        color:"darkgrey",
+                        color:"#00ADB5",
                         textTransform:"capitalize",
                         fontFamily:"Roboto",
                     }}
