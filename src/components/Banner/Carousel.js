@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 const Carousel = () => {
     const [trending, setTrending] = useState([])
-    const { currency } = CryptoState()
+    const { currency, symbol } = CryptoState()
     
     const fetchTrendingCoins = async () => {
         const { data } = await axios.get(TrendingCoins(currency));
@@ -42,18 +42,33 @@ const Carousel = () => {
 
     const items = trending.map((coin) => {
 
-        return(
-            <Link className={classes.carouselItem} to={`/coin/${coin.id}`}>
-                <img
-                    src={coin?.image}
-                    alt={coin.name}
-                    height="80"
-                    style={{ marginbottom: 10}}
-                />           
-            </Link>
-        )
+        let profit = coin?.price_change_percentage_24h >= 0;
 
-    })
+        return (
+            <Link className={classes.carouselItem} to={`/coins/${coin.id}`}>
+              <img
+                src={coin?.image}
+                alt={coin.name}
+                height="80"
+                style={{ marginBottom: 10 }}
+              />
+              <span>
+                {coin?.symbol}
+                &nbsp;
+                <span
+                  style={{
+                    color: profit > 0 ? "rgb(14, 203, 129)" : "red",
+                    fontWeight: 500,
+                  }}
+                >
+                  {profit && "+"}
+                  {coin?.price_change_percentage_24h?.toFixed(2)}%
+                </span>
+              </span>
+            </Link>
+          );
+        });
+      
 
     const responsive = {
         0: {
@@ -76,7 +91,6 @@ const Carousel = () => {
                 responsive={responsive}
                 autoPlay
                 items={items}/>
-            Carousel
         </div>
     )
 }
