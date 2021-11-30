@@ -90,7 +90,7 @@ const Carousel = () => {
             <AliceCarousel
                 mouseTracking
                 infinite
-                autoPlayInterval={1000}
+                autoPlayInterval={2000}
                 animationDuration={1500}
                 disableDotsControls
                 responsive={responsive}

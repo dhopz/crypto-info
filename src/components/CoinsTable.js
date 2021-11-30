@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { CoinList } from '../config/api';
 import { CryptoState } from '../CryptoContext';
 import { useNavigate } from 'react-router-dom';
+import { Pagination } from '@material-ui/lab';
 
 export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -186,6 +187,21 @@ const CoinsTable = () => {
                             )
                         }
                     </TableContainer>
+
+                    <Pagination
+                        count={(handleSearch()?.length / 10).toFixed(0)}
+                        style={{
+                          padding: 20,
+                          width: "100%",
+                          display: "flex",
+                          justifyContent: "center",
+                        }}
+                        classes={{ ul: classes.pagination }}
+                        onChange={(_, value) => {
+                          setPage(value);
+                          window.scroll(0, 450);
+                        }}
+                    />
             </Container>        
         </ThemeProvider>
         
