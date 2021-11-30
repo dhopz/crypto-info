@@ -23,7 +23,7 @@ const CoinsTable = () => {
           backgroundColor: "#16171a",
           cursor: "pointer",
           "&:hover": {
-            backgroundColor: "#131111",
+            backgroundColor: "#393E46",
           },
           fontFamily: "Roboto",
         },
