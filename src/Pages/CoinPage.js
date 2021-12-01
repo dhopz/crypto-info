@@ -1,7 +1,6 @@
 import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { Classnames } from 'react-alice-carousel';
 import { useParams } from 'react-router-dom'
 import CoinInfo from '../components/CoinInfo';
 import { SingleCoin } from '../config/api';
