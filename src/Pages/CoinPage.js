@@ -20,7 +20,7 @@ const CoinPage = () => {
     
   };
 
-  console.log(coin)
+  // console.log(coin)
 
   useEffect(() => {
     fetchCoin();
@@ -142,7 +142,7 @@ const CoinPage = () => {
                 >
                   {symbol}{" "}
                   {numberWithCommas(
-                    coin?.market_data.market_cap.[currency.toLowerCase()]
+                    coin?.market_data.market_cap[currency.toLowerCase()]
                       .toString()
                       .slice(0, -6))}M
                 </Typography>
