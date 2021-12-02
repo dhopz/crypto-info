@@ -9,6 +9,7 @@ import { useNavigate } from 'react-router-dom';
 import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CryptoState } from '../CryptoContext';
+import AuthModal from './Authentication/AuthModal';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -64,7 +65,7 @@ const Header = () => {
                     <MenuItem value={'USD'}>USD</MenuItem>
                     <MenuItem value={'GBP'}>GBP</MenuItem>
                 </Select>
-                <Button color="inherit">Login</Button>
+                <AuthModal/>
                 </Toolbar>
             </Container>
         </AppBar>

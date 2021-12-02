@@ -13,7 +13,7 @@ export function numberWithCommas(x) {
 const CoinsTable = () => {
 
     const [search, setSearch] = useState("")
-    const { currency, symbol, coins, loading } = CryptoState();
+    const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
     const [page, setPage] = useState(1);
 
     const useStyles = makeStyles({
