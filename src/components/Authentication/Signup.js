@@ -1,3 +1,4 @@
+import { Box } from '@material-ui/core'
 import React, { useState } from 'react'
 
 const Signup = ({handleClose}) => {
@@ -8,9 +9,11 @@ const Signup = ({handleClose}) => {
 
 
     return (
-        <div>
-            Signup
-        </div>
+        <Box 
+        p={3}
+        style={{display:"flex", flexDirection:"column", gap:"20px"}}
+
+        </Box>
     )
 }
 

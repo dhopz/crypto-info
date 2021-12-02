@@ -1,5 +1,7 @@
 config/firebaseConfig.js
-/Users/davidhoupapa/Projects/crypto-info/src/config/firebaseConfig.js
+src/config/firebaseConfig.js
+firebaseConfig
+
 
 node_modules/
 node_modules
@@ -140,4 +142,4 @@ dmypy.json
 .pytype/
 
 # Cython debug symbols
-cython_debug/
+cython_debug/firebaseConfig.js
