@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 const Header = () => {
   const classes = useStyles();
   const navigate =  useNavigate();
-  const {currency, setCurrency} = CryptoState() 
+  const {currency, setCurrency, user} = CryptoState() 
 
   // console.log(currency);
 
@@ -65,7 +65,7 @@ const Header = () => {
                     <MenuItem value={'USD'}>USD</MenuItem>
                     <MenuItem value={'GBP'}>GBP</MenuItem>
                 </Select>
-                <AuthModal/>
+                {user? "Logout" : <AuthModal/>}
                 </Toolbar>
             </Container>
         </AppBar>
