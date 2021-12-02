@@ -82,8 +82,8 @@ export default function AuthModal() {
                   </Tabs>
               </AppBar> 
 
-              {value===0 && <Login/>}
-              {value===1 && <Signup/>}
+              {value===0 && <Login handleClose={handleClose}/>}
+              {value===1 && <Signup handleClose={handleClose}/>}
             
           </div>
         </Fade>
