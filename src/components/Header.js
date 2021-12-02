@@ -10,6 +10,7 @@ import { createTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/core/styles';
 import { CryptoState } from '../CryptoContext';
 import AuthModal from './Authentication/AuthModal';
+import UserSidebar from './Authentication/UserSidebar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,7 +66,9 @@ const Header = () => {
                     <MenuItem value={'USD'}>USD</MenuItem>
                     <MenuItem value={'GBP'}>GBP</MenuItem>
                 </Select>
-                {user? "Logout" : <AuthModal/>}
+                {user? <UserSidebar>
+                  
+                </UserSidebar> : <AuthModal/>}
                 </Toolbar>
             </Container>
         </AppBar>
