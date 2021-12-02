@@ -1,10 +1,42 @@
-import React from 'react'
+import { Box, Button, TextField } from '@material-ui/core'
+import React, { useState } from 'react'
 
 const Login = ({handleClose}) => {
+
+    const [email, setEmail] = useState("")
+    const [password, setPassword] = useState("")
+    const handleSubmit = () => {}
+
     return (
-        <div>
-            Login
-        </div>
+        <Box 
+        p={3}
+        style={{display:"flex", flexDirection:"column", gap:"20px"}}
+        >
+        <TextField
+            variant="outlined"
+            type="Email"
+            label="Enter Email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            fullWidth
+        />
+        <TextField
+            variant="outlined"
+            type="Password"
+            label="Enter Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            fullWidth
+        />
+        <Button
+        variant="contained"
+        size="large"
+        style={{backgroundColor:"#00FFF5"}}
+        onClick={handleSubmit}
+        >
+        Login
+        </Button> 
+        </Box>
     )
 }
 

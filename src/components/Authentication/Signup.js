@@ -28,7 +28,7 @@ const Signup = ({handleClose}) => {
             type="Password"
             label="Enter Password"
             value={password}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setPassword(e.target.value)}
             fullWidth
         />
         <TextField
@@ -36,7 +36,7 @@ const Signup = ({handleClose}) => {
             type="Password"
             label="Enter Password"
             value={confirmPassword}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => setconfirmPassword(e.target.value)}
             fullWidth
         />
         <Button
