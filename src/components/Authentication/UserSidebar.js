@@ -14,7 +14,15 @@ const useStyles = makeStyles({
     display:"flex",
     flexDirection:"column",
     fontFamily:"monospace",
-  }
+  },
+  profile: {
+    flex: 1,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "20px",
+    height: "92%",
+  },
 });
 
 export default function UserSidebar() {
