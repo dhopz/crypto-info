@@ -1,10 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
+import { getAuth } from '@firebase/auth'
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import { CryptoState } from '../../CryptoContext';
 import { Avatar } from '@material-ui/core';
+import { signOut } from '@firebase/auth';
 
 const useStyles = makeStyles({
   container:{
@@ -59,12 +61,13 @@ const useStyles = makeStyles({
 
 export default function UserSidebar() {
   const classes = useStyles();
+  const auth = getAuth();
   const [state, setState] = React.useState({
     right: false,
   });
 
 
-  const { user } = CryptoState()
+  const { user,setAlert } = CryptoState()
 
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
@@ -75,14 +78,14 @@ export default function UserSidebar() {
   };
 
   const logOut = () => {
-    // signOut(auth);
-    // setAlert({
-    //   open: true,
-    //   type: "success",
-    //   message: "Logout Successfull !",
-    // });
+    signOut(auth);
+    setAlert({
+      open: true,
+      type: "success",
+      message: "Logout Successfull!",
+    });
 
-    // toggleDrawer();
+    toggleDrawer();
   };
 
   const list = (anchor) => (
