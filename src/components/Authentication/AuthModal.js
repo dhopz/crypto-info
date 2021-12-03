@@ -8,7 +8,7 @@ import Login from './Login';
 import Signup from './Signup';
 import GoogleButton from "react-google-button";
 import { getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
-import CryptoContext, { CryptoState } from '../../CryptoContext';
+import { CryptoState } from '../../CryptoContext';
 
 
 const useStyles = makeStyles((theme) => ({

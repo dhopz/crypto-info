@@ -14,6 +14,7 @@ const CryptoContext = ({children}) => {
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState(null)
+    const [watchlist, setWatchlist] = useState([])
     
     const [alert, setAlert] = useState({
         open:false,
@@ -22,12 +23,13 @@ const CryptoContext = ({children}) => {
     })
 
     useEffect(() => {
-        onAuthStateChanged(auth, user => {
-            if (user) setUser(user);
-            else setUser(null)
-        })
-
-    })
+        onAuthStateChanged(auth, (user) => {
+          if (user) setUser(user);
+          else setUser(null);
+        });
+        console.log(user);
+      }, []);
+    
 
     const fetchCoins = async () => {
         setLoading(true) 
@@ -52,6 +54,7 @@ const CryptoContext = ({children}) => {
         alert,
         setAlert,
         user,
+        watchlist
         }}>
             {children}
         </Crypto.Provider>

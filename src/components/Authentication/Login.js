@@ -10,7 +10,7 @@ const Login = ({handleClose}) => {
     const [password, setPassword] = useState("")
     const { setAlert } =CryptoState()
     const auth = getAuth();
-
+    
     const handleSubmit = async () => {
         if (!email || !password) {
           setAlert({
@@ -28,7 +28,7 @@ const Login = ({handleClose}) => {
             message: `Sign Up Successful. Welcome ${result.user.email}`,
             type: "success",
           });
-    
+          // console.log(result);
           handleClose();
         } catch (error) {
           setAlert({
