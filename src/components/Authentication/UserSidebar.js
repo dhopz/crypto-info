@@ -30,6 +30,31 @@ const useStyles = makeStyles({
     backgroundColor: "#00FFF5",
     objectFit: "contain",
   },
+  logout: {
+    height: "5%",
+    width: "100%",
+    backgroundColor: "#00ADB5",
+    marginTop: 20,
+  },
+  portfolio: {
+    height: "5%",
+    width: "100%",
+    backgroundColor: "#00FFF5",
+    marginTop: 20,
+  },
+  watchlist: {
+    flex: 1,
+    width: "100%",
+    backgroundColor: "grey",
+    borderRadius: 10,
+    padding: 15,
+    paddingTop: 10,
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: 12,
+    overflowY: "scroll",
+  },
 });
 
 export default function UserSidebar() {
@@ -47,6 +72,17 @@ export default function UserSidebar() {
     }
 
     setState({ ...state, [anchor]: open });
+  };
+
+  const logOut = () => {
+    // signOut(auth);
+    // setAlert({
+    //   open: true,
+    //   type: "success",
+    //   message: "Logout Successfull !",
+    // });
+
+    // toggleDrawer();
   };
 
   const list = (anchor) => (
@@ -100,8 +136,27 @@ export default function UserSidebar() {
               >
                 {user.displayName||user.email}
               </span>
+              <Button
+                variant="contained"
+                className={classes.portfolio}
+                onClick={logOut}
+              >
+                Portfolio
+              </Button>
+              <div className={classes.watchlist}>
+                  <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>
+                    Watchlist
+                  </span>
+                  
               </div>
-
+              <Button
+                variant="contained"
+                className={classes.logout}
+                onClick={logOut}
+              >
+                Log Out
+              </Button>
+              </div>
             </div>
           </Drawer>
         </React.Fragment>
