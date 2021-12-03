@@ -7,6 +7,9 @@ import { AppBar, Button, Tab, Tabs, Box } from '@material-ui/core';
 import Login from './Login';
 import Signup from './Signup';
 import GoogleButton from "react-google-button";
+import { getAuth, GoogleAuthProvider, signInWithPopup } from '@firebase/auth';
+import CryptoContext, { CryptoState } from '../../CryptoContext';
+
 
 const useStyles = makeStyles((theme) => ({
   modal: {
@@ -34,6 +37,10 @@ const useStyles = makeStyles((theme) => ({
 export default function AuthModal() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(false);
+  const { setAlert } = CryptoState()
+  const auth = getAuth();
+
+  const googleProvider = new GoogleAuthProvider()
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,9 +51,27 @@ export default function AuthModal() {
   };
 
   const [value, setValue] = React.useState(0);
-  const signInWithGoogle = () => {
 
-  }
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => {
+        setAlert({
+          open: true,
+          message: `Sign Up Successful. Welcome ${res.user.email}`,
+          type: "success",
+        });
+
+        handleClose();
+      })
+      .catch((error) => {
+        setAlert({
+          open: true,
+          message: error.message,
+          type: "error",
+        });
+        return;
+      });
+  };
 
   const handleChange = (event, newValue) => {
       setValue(newValue);
