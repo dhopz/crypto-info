@@ -7,12 +7,14 @@ import { CryptoState } from '../../CryptoContext';
 import { Avatar } from '@material-ui/core';
 
 const useStyles = makeStyles({
-  list: {
-    width: 250,
-  },
-  fullList: {
-    width: 'auto',
-  },
+  container:{
+    width:350,
+    padding:25,
+    height:"100%",
+    display:"flex",
+    flexDirection:"column",
+    fontFamily:"monospace",
+  }
 });
 
 export default function UserSidebar() {
@@ -59,12 +61,11 @@ export default function UserSidebar() {
             }} 
             src={user.photoURL}
             alt={user.displayName||user.email}
-            />
-
-            
-          
+            />                  
           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-            hello
+            <div className={classes.container}>
+
+            </div>
           </Drawer>
         </React.Fragment>
       ))}
