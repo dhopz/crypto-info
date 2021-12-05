@@ -4,40 +4,41 @@ import { coinPrices } from '../config/prices';
 import {Pie, Doughnut} from 'react-chartjs-2';
 import {Chart, ArcElement} from 'chart.js'
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
+import { numberWithCommas } from './CoinsTable';
+import { CryptoState } from '../CryptoContext';
 Chart.register(ArcElement);
 
 
 
 const PortfolioPie = () => {
   // const [prices, setPrices] = useState();
-  // const { currency } = CryptoState();
+  const { currency } = CryptoState();
 
   const balances= balance.map(element => element.units * coinPrices[0][element.id]['usd']);
+  const coinName = balance.map(element => element.id)
   const totalValue = Math.round(balances.reduce((partial_sum, a) => partial_sum + a, 0));
 
-  const state = {    
+  function randomBlue () {
+    return "rgb(0, 0, " + (Math.floor(Math.random() * 255)) + ")";
+  }
+  const labelColor = []
+  const coinColor = balance.forEach(element=>
+    labelColor.push(randomBlue())
+    )
+  
+
+  const state = {   
+    displayColors:false,
     datasets: [
       {
-        label: 'Rainfall',
-        backgroundColor: [
-          '#00FFF5',
-          '#C9DE00',
-          '#2FDE00',
-          '#00A6B4',
-          '#6800B4'
-        ],
-        hoverBackgroundColor: [
-        '#501800',
-        '#4B5000',
-        '#175000',
-        '#003350',
-        '#35014F'
-        ],
+        label: coinName,
+        backgroundColor: labelColor,
         data: balances,
-        hoverOffset: 4
-      }
-    ]
+        hoverOffset: 4,
+      },
+    ],   
   }
+  
   const useStyles = makeStyles((theme) => ({
     container: {
       width: "450px",
@@ -66,7 +67,7 @@ const PortfolioPie = () => {
          var fontSize = (height / 200).toFixed(2);
          ctx.font = fontSize + "em sans-serif";
          ctx.textBaseline = "middle";
-         var text = totalValue,
+         var text = numberWithCommas(totalValue) + " " +currency,
          textX = Math.round((width - ctx.measureText(text).width) / 2),
          textY = height / 2;
          ctx.fillText(text, textX, textY);
@@ -87,12 +88,13 @@ const PortfolioPie = () => {
 
   
   const portfolioCoins = balance.map(element => element.id)
-  console.log(portfolioCoins.toString());
+  console.log(portfolioCoins.length, portfolioCoins.toString());
     
   balance.forEach(element => {
-    console.log(element.id, element.units * coinPrices[0][element.id]['usd']);
+    console.log(element.id, element.units * coinPrices[0][element.id]['usd'], randomBlue());
   });
 
+    
   
 
   return (
