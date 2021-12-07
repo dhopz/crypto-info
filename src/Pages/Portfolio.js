@@ -3,9 +3,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container } from '@material-ui/core';
-import PortfolioPie from '../components/PortfolioPie';
 import CoinsTable from '../components/CoinsTable';
 import Carousel from '../components/Banner/Carousel';
+import PortCarousel from '../components/Portfolio/PortCarousel'
 import clsx from "clsx";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,13 @@ const useStyles = makeStyles((theme) => ({
     textAlign: "center"
   },
   containerTall: {
-    minHeight: 250 // This div has higher minimum height
+    minHeight: 175 // This div has higher minimum height
+  },
+  containerTallb: {
+    minHeight: 375 // This div has higher minimum height
+  },
+  containerTallc: {
+    minHeight: 400 // This div has higher minimum height
   },
   paper: {
     padding: theme.spacing(2),
@@ -40,23 +46,40 @@ export default function CenteredGrid() {
   const classes = useStyles();
 
   return (
-    <Grid container direction="row" spacing={2}>
-      <Grid item xs>
-        <div className={classes.container}>1</div>
-      </Grid>
-      <Grid item container direction="column" xs spacing={2}>
-        <Grid item xs>
-          <div className={classes.container}>2</div>
+    <Container>
+      <Grid container direction="row" spacing={2}>
+        <Grid item container direction="column" xs spacing={2} xs={8}>
+          <Grid item xs>
+            <div className={clsx(classes.container, classes.containerTall)}>
+              1
+            </div>
+          </Grid>
+          <Grid item xs>
+            <div className={clsx(classes.container, classes.containerTall)}>
+              <PortCarousel>
+                Port
+              </PortCarousel>
+            </div>
+          </Grid>
+          <Grid item xs>
+            <div className={clsx(classes.container, classes.containerTallc)}>
+              3
+            </div>
+          </Grid>
         </Grid>
-        <Grid item xs>
-          <div className={clsx(classes.container, classes.containerTall)}>
-            3
-          </div>
+        <Grid item container direction="column" xs spacing={2}>
+          <Grid item xs>
+            <div className={clsx(classes.container, classes.containerTallb)}>
+              4
+            </div>
+          </Grid>
+          <Grid item xs>
+            <div className={clsx(classes.container, classes.containerTallb)}>
+              5
+            </div>
+          </Grid>
         </Grid>
       </Grid>
-      <Grid item xs>
-        <div className={classes.container}>4</div>
-      </Grid>
-    </Grid>
+    </Container>
   );
 }
