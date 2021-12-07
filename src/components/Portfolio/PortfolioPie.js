@@ -1,11 +1,11 @@
 import React from 'react';
-import { balance } from '../config/balance';
-import { coinPrices } from '../config/prices';
+import { balance } from '../../config/balance'
+import { coinPrices } from '../../config/prices';
 import {Pie, Doughnut} from 'react-chartjs-2';
 import {Chart, ArcElement} from 'chart.js'
 import { createTheme, makeStyles, ThemeProvider } from '@material-ui/core';
-import { numberWithCommas } from './CoinsTable';
-import { CryptoState } from '../CryptoContext';
+import { numberWithCommas } from '../CoinsTable';
+import { CryptoState } from '../../CryptoContext';
 Chart.register(ArcElement);
 
 

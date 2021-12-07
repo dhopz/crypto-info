@@ -16,7 +16,7 @@ const Carousel = () => {
     const fetchTrendingCoins = async () => {
         const { data } = await axios.get(TrendingCoins(currency));
     
-        console.log(data);
+        //console.log(data);
         setTrending(data);
       };
 
@@ -26,7 +26,7 @@ const Carousel = () => {
 
     const useStyles = makeStyles((theme) => ({
         carousel: {
-            height:"100%",
+            height:"40%",
             display:"flex",
             alignItems:"center"
         },
@@ -84,7 +84,7 @@ const Carousel = () => {
             items:2,
         },
         512:{
-            items:4,
+            items:6,
         },
         }
     
