@@ -1,5 +1,4 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container, Typography } from '@material-ui/core';
@@ -10,6 +9,11 @@ import PortTable2 from '../components/Portfolio/PortTable2'
 import { balance } from '../config/balance'
 import CoinsTable from '../components/CoinsTable';
 import { CryptoState } from '../CryptoContext'
+import {  
+  createTheme,
+  makeStyles,
+  ThemeProvider,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -45,6 +49,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: "#fff",
+    },
+    type: "dark",
+  },
+});
+
 export default function CenteredGrid() {
 
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
@@ -57,6 +70,7 @@ export default function CenteredGrid() {
   const classes = useStyles();
 
   return (
+    <ThemeProvider theme={darkTheme}>
     <Container>
       <Grid container direction="row" spacing={2}>
         <Grid item container direction="column" xs spacing={2} xs={8}>
@@ -115,5 +129,6 @@ export default function CenteredGrid() {
         </Grid>
       </Grid>
     </Container>
+    </ThemeProvider>
   );
 }
