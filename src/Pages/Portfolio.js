@@ -3,9 +3,14 @@ import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
 import { Container, Typography } from '@material-ui/core';
 import PortCarousel from '../components/Portfolio/PortCarousel'
+import PortChart from '../components/Portfolio/PortChart'
 import clsx from "clsx";
 import PortfolioPie from '../components/Portfolio/PortfolioPie';
 import PortTable2 from '../components/Portfolio/PortTable2'
+import PortBalance from '../components/Portfolio/PortBalance'
+import PortProfit from '../components/Portfolio/PortProfit'
+import PortPerformance from '../components/Portfolio/PortPerfomance'
+import PortInstruct from '../components/Portfolio/PortInstruct'
 import { balance } from '../config/balance'
 import CoinsTable from '../components/CoinsTable';
 import { CryptoState } from '../CryptoContext'
@@ -60,11 +65,7 @@ const darkTheme = createTheme({
 
 export default function CenteredGrid() {
 
-  const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
-
-  // const portfolioCoins = balance.map(element => element.id)
-  // const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))
-  // console.log(portfolio);
+  const { currency, symbol, coins, loading, fetchCoins } = CryptoState(); 
 
 
   const classes = useStyles();
@@ -76,7 +77,28 @@ export default function CenteredGrid() {
         <Grid item container direction="column" xs spacing={2} xs={8}>
           <Grid item xs>
             <div className={clsx(classes.container, classes.containerTall)}>
-              
+            <Typography
+                    variant="h6"
+                    align="left"
+                    style={{ 
+                      margin:10, 
+                      fontFamily:"Roboto",
+                      color:"#00ADB5"
+                    }}
+                    >
+                    Total Balance
+                </Typography>  
+                <Grid container spacing={24}>
+                  <Grid item md={4}>
+                  <PortBalance/>
+                  </Grid>
+                  <Grid item md={4}>
+                  <PortProfit/>
+                  </Grid>
+                  <Grid item md={4}>
+                  <PortPerformance/>
+                </Grid> 
+                </Grid>      
             </div>
           </Grid>
           <Grid item xs>
@@ -90,7 +112,7 @@ export default function CenteredGrid() {
                       color:"#00ADB5"
                     }}
                     >
-                    Watchlist
+                    Trending
                 </Typography>
               <PortCarousel>                
               </PortCarousel>
@@ -98,14 +120,27 @@ export default function CenteredGrid() {
           </Grid>
           <Grid item xs>
             <div className={clsx(classes.container, classes.containerTallc)}>
-              Graph
+              <Typography
+                  variant="h6"
+                  align="left"
+                  style={{ 
+                    margin:10, 
+                    fontFamily:"Roboto",
+                    color:"#00ADB5"
+                  }}
+                  >
+                  Statistics
+              </Typography>
+              <PortChart>
+                Chart
+              </PortChart>
             </div>
           </Grid>
         </Grid>
         <Grid item container direction="column" xs spacing={2}>
           <Grid item xs>
             <div className={clsx(classes.container, classes.containerTallb)}>
-              4
+              <PortInstruct/>
             </div>
           </Grid>
           <Grid item xs>

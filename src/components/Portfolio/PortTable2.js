@@ -49,7 +49,7 @@ const CoinsTable = () => {
     const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
     const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
 
-    console.log(updatedPortfolio);
+    console.log(portfolioCoins[0]);
 
   
     useEffect(() => {
@@ -117,8 +117,7 @@ const CoinsTable = () => {
                                                 style={{                                    
                                                   gap: 15,
                                                   borderBottom:"none"
-                                                }}>
-                                                {" "}
+                                                }}>              
                                                 {numberWithCommas((row.current_price * row.units).toFixed(2))}
                                                 </TableCell>                                           
                                                 
