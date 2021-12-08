@@ -11,37 +11,7 @@ export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
   }
 
-const theme = createTheme({
-  // overrides: {
-  //   MuiCssBaseline: {
-  //     "@global": {
-  //       body: {
-  //         scrollbarColor: "#6b6b6b #2b2b2b",
-  //         "&::-webkit-scrollbar, & *::-webkit-scrollbar": {
-  //           backgroundColor: "#2b2b2b",
-  //         },
-  //         "&::-webkit-scrollbar-thumb, & *::-webkit-scrollbar-thumb": {
-  //           borderRadius: 8,
-  //           backgroundColor: "#6b6b6b",
-  //           minHeight: 24,
-  //           border: "3px solid #2b2b2b",
-  //         },
-  //         "&::-webkit-scrollbar-thumb:focus, & *::-webkit-scrollbar-thumb:focus": {
-  //           backgroundColor: "#959595",
-  //         },
-  //         "&::-webkit-scrollbar-thumb:active, & *::-webkit-scrollbar-thumb:active": {
-  //           backgroundColor: "#959595",
-  //         },
-  //         "&::-webkit-scrollbar-thumb:hover, & *::-webkit-scrollbar-thumb:hover": {
-  //           backgroundColor: "#959595",
-  //         },
-  //         "&::-webkit-scrollbar-corner, & *::-webkit-scrollbar-corner": {
-  //           backgroundColor: "#2b2b2b",
-  //         },
-  //       },
-  //     },
-  //   },
-  // },
+const theme = createTheme({  
   palette: {
     primary: {
       main: "#fff",
@@ -52,7 +22,7 @@ const theme = createTheme({
 
 const CoinsTable = () => {
 
-    const [search, setSearch] = useState("")
+    
     const { currency, symbol, coins, loading, fetchCoins } = CryptoState();
 
     const useStyles = makeStyles({
@@ -76,34 +46,20 @@ const CoinsTable = () => {
     const navigate = useNavigate();
 
     const portfolioCoins = balance.map(element => element.id)
-    const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))
-    console.log(portfolio);
+    const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
+    const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
 
+    console.log(updatedPortfolio);
+
+  
     useEffect(() => {
         fetchCoins();
     },[currency])
 
-    const handleSearch = () => {
-        return coins.filter(
-          (coin) =>
-            coin.name.toLowerCase().includes(search) ||
-            coin.symbol.toLowerCase().includes(search)
-        );
-      };
-
-    const darkTheme = createTheme({
-        palette: {
-            primary:{ 
-                main:'#fff',
-            },
-            type: 'dark',
-        },
-      });
 
     return (
         <ThemeProvider theme={theme}>
-            <Container style={{ textAlign:"center"}}>
-                
+            <Container style={{ textAlign:"center"}}>                
 
                 
                     <TableContainer style={{ maxHeight: 350 }}>
@@ -114,7 +70,7 @@ const CoinsTable = () => {
                                 <Table>                                    
 
                                     <TableBody>
-                                        {portfolio                           
+                                        {updatedPortfolio                           
                                         .map((row) => {                                            
                                             return (
                                             <TableRow
@@ -163,7 +119,7 @@ const CoinsTable = () => {
                                                   borderBottom:"none"
                                                 }}>
                                                 {" "}
-                                                {numberWithCommas(row.current_price.toFixed(2))}
+                                                {numberWithCommas((row.current_price * row.units).toFixed(2))}
                                                 </TableCell>                                           
                                                 
                                             </TableRow>
