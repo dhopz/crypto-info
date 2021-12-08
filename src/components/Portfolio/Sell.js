@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 // import { CryptoState } from '../../CryptoContext'
 
 
-const Buy = () => {
+const Sell = () => {
 
     const [asset, setAsset] = useState("")
     const [amount, setAmount] = useState("")
@@ -40,12 +40,12 @@ const Buy = () => {
 
     return (
         <Box 
-        p={6}
+        p={2}
         style={{display:"flex", flexDirection:"column", gap:"20px"}}
         >
         <TextField
             variant="outlined"
-            type="Asset"
+            type="Email"
             label="Enter Asset"
             value={asset}
             onChange={(e) => setAsset(e.target.value)}
@@ -53,16 +53,16 @@ const Buy = () => {
         />
         <TextField
             variant="outlined"
-            type="amount"
-            label="Enter Amount"
+            type="Password"
+            label="Enter Password"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             fullWidth
         />
         <TextField
             variant="outlined"
-            type="Value"
-            label="Enter Value"
+            type="Password"
+            label="Enter Password"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             fullWidth
@@ -79,4 +79,4 @@ const Buy = () => {
     )
 }
 
-export default Buy
+export default Sell
