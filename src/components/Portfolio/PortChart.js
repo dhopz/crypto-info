@@ -7,6 +7,7 @@ import {
   createTheme,
   makeStyles,
   ThemeProvider,
+  Typography,
 } from "@material-ui/core";
 import SelectButton from "../SelectButton"
 import { chartDays } from "../../config/data";
@@ -61,7 +62,7 @@ const CoinInfo = ({ coin }) => {
   const portfolioCoins = balance.map(element => element.id)
   const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
 
-  console.log(portfolio);
+  //console.log(portfolio);
 
   const classes = useStyles();
 
@@ -90,67 +91,106 @@ const CoinInfo = ({ coin }) => {
   
 
   return (
-    <ThemeProvider theme={darkTheme}>
-      <div className={classes.container}>
-        {!historicData ? (
-          <CircularProgress
-            style={{ color: "#00FFF5" }}
-            size={250}
-            thickness={1}
+    <ThemeProvider theme={darkTheme}> 
+    {/* <img
+        src={portfolio[0]?.image}
+        alt={portfolio[0].name}
+        height="40"
+        style={{ borderBottom:"none" }}
+    />
+    <div
+        style={{ display: "flex", flexDirection: "column", borderBottom:"none", align:"left"}}
+    >
+        <span
+        style={{
+            textTransform: "uppercase",
+            fontSize: 15,
+            borderBottom:"none"                                                                                                  
+        }}
+        >
+        {portfolio[0].symbol}
+        </span>
+        <span style={{ color: "darkgrey", borderBottom:"none", fontSize:12 }}>
+        {portfolio[0].name}
+        </span> 
+      </div>     */}
+      {/* <Typography
+        variant="body2"
+        align="left"
+        style={{ 
+          margin:10,
+          marginBottom:5,
+          fontFamily:"Roboto",
+        }}
+        >
+          <img
+            src={portfolio[0]?.image}
+            alt={portfolio[0].name}
+            height="40"
+            style={{ borderBottom:"none" }}
           />
-        ) : (
-          <>
-            <Line
-              data={{
-                labels: historicData.map((coin) => {
-                  let date = new Date(coin[0]);
-                  let time =
-                    date.getHours() > 12
-                      ? `${date.getHours() - 12}:${date.getMinutes()} PM`
-                      : `${date.getHours()}:${date.getMinutes()} AM`;
-                  return days === 1 ? time : date.toLocaleDateString();
-                }),
-
-                datasets: [
-                  {                    
-                    label: `Price ( Past ${days} Days ) in ${currency}`,
-                    borderColor: "#00ADB5",
-                    data: historicData.map((coin) => coin[1]),                  
-                  },
-                ],
-              }}
-              options={{
-                elements: {
-                  point: {
-                    radius: 1,
-                  },
-                },
-              }}
+        {portfolio[0].name}
+      </Typography>   */}
+        <div className={classes.container}>
+          {!historicData ? (
+            <CircularProgress
+              style={{ color: "#00FFF5" }}
+              size={250}
+              thickness={1}
             />
-            <div
-              style={{
-                size:"small",
-                display: "flex",
-                fontSize:12,
-                marginTop: 20,
-                justifyContent: "space-around",
-                width: "100%",
-              }}
-            >
-              {chartDays.map((day) => (
-                <SelectButton                  
-                  key={day.value}
-                  onClick={() => setDays(day.value)}
-                  selected={day.value === days}
-                >
-                  {day.label}
-                </SelectButton>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </ThemeProvider>
+          ) : (
+            <>
+              <Line
+                data={{
+                  labels: historicData.map((coin) => {
+                    let date = new Date(coin[0]);
+                    let time =
+                      date.getHours() > 12
+                        ? `${date.getHours() - 12}:${date.getMinutes()} PM`
+                        : `${date.getHours()}:${date.getMinutes()} AM`;
+                    return days === 1 ? time : date.toLocaleDateString();
+                  }),
+
+                  datasets: [
+                    {                    
+                      label: `Price ( Past ${days} Days ) in ${currency}`,
+                      borderColor: "#00ADB5",
+                      data: historicData.map((coin) => coin[1]),                  
+                    },
+                  ],
+                }}
+                options={{
+                  elements: {
+                    point: {
+                      radius: 1,
+                    },
+                  },
+                }}
+              />
+              <div
+                style={{
+                  size:"small",
+                  display: "flex",
+                  fontSize:12,
+                  marginTop: 20,
+                  justifyContent: "space-around",
+                  width: "100%",
+                }}
+              >
+                {chartDays.map((day) => (
+                  <SelectButton                  
+                    key={day.value}
+                    onClick={() => setDays(day.value)}
+                    selected={day.value === days}
+                  >
+                    {day.label}
+                  </SelectButton>
+                ))}
+              </div>
+            </>
+          )}
+        </div>
+      </ThemeProvider>
   );
 };
 

@@ -49,7 +49,7 @@ const CoinsTable = () => {
     const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
     const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
 
-    console.log(portfolioCoins[0]);
+    //console.log(portfolioCoins[0]);
 
   
     useEffect(() => {

@@ -47,6 +47,9 @@ const Sell = () => {
             variant="outlined"
             type="Email"
             label="Enter Asset"
+            inputProps={{
+                style: {fontSize: 15} 
+              }}
             value={asset}
             onChange={(e) => setAsset(e.target.value)}
             fullWidth
