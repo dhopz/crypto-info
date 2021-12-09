@@ -87,6 +87,8 @@ const CoinInfo = ({ coin }) => {
     },
   });
 
+  
+
   return (
     <ThemeProvider theme={darkTheme}>
       <div className={classes.container}>
@@ -110,10 +112,10 @@ const CoinInfo = ({ coin }) => {
                 }),
 
                 datasets: [
-                  {
-                    data: historicData.map((coin) => coin[1]),
+                  {                    
                     label: `Price ( Past ${days} Days ) in ${currency}`,
                     borderColor: "#00ADB5",
+                    data: historicData.map((coin) => coin[1]),                  
                   },
                 ],
               }}
@@ -125,10 +127,11 @@ const CoinInfo = ({ coin }) => {
                 },
               }}
             />
-            {/* <div
+            <div
               style={{
                 size:"small",
                 display: "flex",
+                fontSize:12,
                 marginTop: 20,
                 justifyContent: "space-around",
                 width: "100%",
@@ -143,7 +146,7 @@ const CoinInfo = ({ coin }) => {
                   {day.label}
                 </SelectButton>
               ))}
-            </div> */}
+            </div>
           </>
         )}
       </div>
