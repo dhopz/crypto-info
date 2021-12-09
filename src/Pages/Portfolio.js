@@ -23,13 +23,16 @@ import {
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100%", // So that grids 1 & 4 go all the way down
-    minHeight: 150, // Give minimum height to a div
+    minHeight: 100, // Give minimum height to a div
     border: "1px solid black",
     fontSize: 30,
     textAlign: "center"
   },
   containerTall: {
     minHeight: 175 // This div has higher minimum height
+  },
+  containerTalla: {
+    minHeight: 100 // This div has higher minimum height
   },
   containerTallb: {
     minHeight: 375 // This div has higher minimum height
@@ -76,7 +79,7 @@ export default function CenteredGrid() {
       <Grid container direction="row" spacing={2}>
         <Grid item container direction="column" xs spacing={2} xs={8}>
           <Grid item xs>
-            <div className={clsx(classes.container, classes.containerTall)}>
+            <div className={clsx(classes.container, classes.containerTalla)}>
             <Typography
                     variant="h6"
                     align="left"

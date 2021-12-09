@@ -73,7 +73,7 @@ const Sell = () => {
         <Button
         variant="contained"
         size="large"
-        style={{backgroundColor:"#00FFF5"}}
+        style={{backgroundColor:"#00ADB5"}}
         // onClick={handleSubmit}
         >
         Buy

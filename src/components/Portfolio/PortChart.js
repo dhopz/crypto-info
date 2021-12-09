@@ -48,8 +48,8 @@ const CoinInfo = ({ coin }) => {
       flexDirection: "column",
       alignItems: "center",
       justifyContent: "center",
-      marginTop: 25,
-      padding: 40,
+      marginTop: 10,
+      padding: 10,
       [theme.breakpoints.down("md")]: {
         width: "100%",
         marginTop: 0,
@@ -126,7 +126,7 @@ const CoinInfo = ({ coin }) => {
           <img
             src={portfolio[0]?.image}
             alt={portfolio[0].name}
-            height="40"
+            height="20"
             style={{ borderBottom:"none" }}
           />
         {portfolio[0].name}
