@@ -117,8 +117,23 @@ const CoinsTable = () => {
                                                 style={{                                    
                                                   gap: 15,
                                                   borderBottom:"none"
-                                                }}>              
-                                                {numberWithCommas((row.current_price * row.units).toFixed(2))}
+                                                }}>
+                                                  <div
+                                                    style={{ display: "flex", flexDirection: "column", borderBottom:"none"}}
+                                                  >
+                                                    <span
+                                                    style={{
+                                                        textTransform: "uppercase",
+                                                        fontSize: 15,
+                                                        borderBottom:"none"                                                                                                  
+                                                    }}
+                                                    >     
+                                                    {numberWithCommas((row.current_price * row.units).toFixed(2))}
+                                                    </span> 
+                                                    <span style={{ color: "darkgrey", borderBottom:"none" }}>
+                                                    {row.units.toFixed(4)}
+                                                    </span>
+                                                  </div>
                                                 </TableCell>                                           
                                                 
                                             </TableRow>

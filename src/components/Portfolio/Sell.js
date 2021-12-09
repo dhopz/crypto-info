@@ -40,7 +40,7 @@ const Sell = () => {
 
     return (
         <Box 
-        p={2}
+        p={6}
         style={{display:"flex", flexDirection:"column", gap:"20px"}}
         >
         <TextField
@@ -53,16 +53,16 @@ const Sell = () => {
         />
         <TextField
             variant="outlined"
-            type="Password"
-            label="Enter Password"
+            type="amount"
+            label="Enter Amount"
             value={amount}
             onChange={(e) => setAmount(e.target.value)}
             fullWidth
         />
         <TextField
             variant="outlined"
-            type="Password"
-            label="Enter Password"
+            type="value"
+            label="Enter Value"
             value={value}
             onChange={(e) => setValue(e.target.value)}
             fullWidth

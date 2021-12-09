@@ -61,7 +61,7 @@ const CoinInfo = ({ coin }) => {
   const portfolioCoins = balance.map(element => element.id)
   const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
 
-  console.log(portfolioCoins[0]);
+  console.log(portfolio);
 
   const classes = useStyles();
 
