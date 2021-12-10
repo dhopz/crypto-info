@@ -10,11 +10,11 @@ const SelectButton = ({ children, selected, onClick }) => {
       paddingRight: 20,
       fontFamily: "Roboto",
       cursor: "pointer",
-      backgroundColor: selected ? "#00FFF5" : "",
+      backgroundColor: selected ? "#00ADB5" : "",
       color: selected ? "black" : "",
       fontWeight: selected ? 700 : 500,
       "&:hover": {
-        backgroundColor: "#00ADB5",
+        backgroundColor: "#00FFF5",
         color: "black",
       },
       width: "22%",

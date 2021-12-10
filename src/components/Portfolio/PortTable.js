@@ -117,7 +117,7 @@ const CoinsTable = () => {
                                                 <img
                                                     src={row?.image}
                                                     alt={row.name}
-                                                    height="50"
+                                                    height="40"
                                                     style={{ marginBottom: 10 }}
                                                 />
                                                 <div
@@ -126,7 +126,7 @@ const CoinsTable = () => {
                                                     <span
                                                     style={{
                                                         textTransform: "uppercase",
-                                                        fontSize: 22,
+                                                        fontSize: 15,
                                                     }}
                                                     >
                                                     {row.symbol}
@@ -139,17 +139,7 @@ const CoinsTable = () => {
                                                 <TableCell align="right">
                                                 {symbol}{" "}
                                                 {numberWithCommas(row.current_price.toFixed(2))}
-                                                </TableCell>
-                                                <TableCell 
-                                                align="right"
-                                                style={{
-                                                    color: profit > 0 ? "rgb(14, 203, 129)" : "red",
-                                                    fontWeight: 500,
-                                                }}
-                                                >
-                                                {symbol}{" "}
-                                                {numberWithCommas(row.price_change_24h.toFixed(2))}
-                                                </TableCell>
+                                                </TableCell>                                                
                                                 <TableCell
                                                 align="right"
                                                 style={{

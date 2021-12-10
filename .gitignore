@@ -1,3 +1,8 @@
+config/firebaseConfig.js
+src/config/firebaseConfig.js
+firebaseConfig
+
+
 node_modules/
 node_modules
 # Byte-compiled / optimized / DLL files
@@ -137,4 +142,4 @@ dmypy.json
 .pytype/
 
 # Cython debug symbols
-cython_debug/
+cython_debug/firebaseConfig.js

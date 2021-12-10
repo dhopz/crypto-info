@@ -12,3 +12,7 @@ a {
   color: #00ADB5;
 
 }
+
+::-webkit-scrollbar {
+  width: 0;
+}

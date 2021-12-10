@@ -114,7 +114,7 @@ const CoinInfo = ({ coin }) => {
               options={{
                 elements: {
                   point: {
-                    radius: 2,
+                    radius: 1,
                   },
                 },
               }}
