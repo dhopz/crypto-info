@@ -1,5 +1,10 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import FormControl from '@material-ui/core/FormControl';
+import Select from '@material-ui/core/Select';
 import { HistoricalChart } from "../../config/api";
 import { Line } from "react-chartjs-2";
 import {
@@ -38,6 +43,7 @@ ChartJS.register(
 
 const CoinInfo = ({ coin }) => {
   const [historicData, setHistoricData] = useState();
+  const [age, setAge] = useState('');
   const [days, setDays] = useState(1);
   const { currency, coins } = CryptoState();
 
@@ -57,6 +63,15 @@ const CoinInfo = ({ coin }) => {
         paddingTop: 0,
       },
     },
+    formControl: {
+      margin: theme.spacing(1),
+      minWidth: 120,
+      float:"left",
+      flexDirection:"left",
+    },
+    selectEmpty: {
+      marginTop: theme.spacing(2),
+    },
   }));
 
   const portfolioCoins = balance.map(element => element.id)
@@ -65,6 +80,10 @@ const CoinInfo = ({ coin }) => {
   //console.log(portfolio);
 
   const classes = useStyles();
+
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
 
   const fetchHistoricData = async () => {
     const { data } = await axios.get(HistoricalChart(portfolioCoins[0], days, currency));
@@ -131,6 +150,27 @@ const CoinInfo = ({ coin }) => {
           />
         {portfolio[0].name}
       </Typography>   */}
+      <FormControl 
+      className={classes.formControl} 
+      align="left"                    
+      style={{ 
+        margin:10,
+        fontFamily:"Roboto",
+        color:"#00ADB5"
+        }}
+      >
+        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <Select
+          labelId="demo-simple-select-label"
+          id="demo-simple-select"
+          value={age}
+          onChange={handleChange}
+        >
+          <MenuItem value={10}>Ten</MenuItem>
+          <MenuItem value={20}>Twenty</MenuItem>
+          <MenuItem value={30}>Thirty</MenuItem>
+        </Select>
+      </FormControl>
         <div className={classes.container}>
           {!historicData ? (
             <CircularProgress
