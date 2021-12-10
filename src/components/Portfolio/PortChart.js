@@ -159,7 +159,7 @@ const CoinInfo = ({ coin }) => {
         color:"#00ADB5"
         }}
       >
-        <InputLabel id="demo-simple-select-label">Age</InputLabel>
+        <InputLabel id="demo-simple-select-label">Coin</InputLabel>
         <Select
           labelId="demo-simple-select-label"
           id="demo-simple-select"
