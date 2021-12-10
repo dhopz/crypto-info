@@ -3,8 +3,11 @@ import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
-import { balance } from '../../config/balance';
 import { CryptoState } from '../../CryptoContext';
+import { createBalance } from '../TotalBalance'
+import { balance } from '../../config/balance';
+import { numberWithCommas } from '../../components/CoinsTable'
+import { LinearProgress } from '@material-ui/core';
 
 const useStyles = makeStyles({
   root: {
@@ -28,26 +31,15 @@ const useStyles = makeStyles({
   },  
 });
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
-
-export default function PortBalance() {
+const PortBalance = () => {
   const classes = useStyles();
-  const { coins } = CryptoState()
+  const { coins } = CryptoState()  
   const portfolioCoins = balance.map(element => element.id)
-  const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))
-
-  console.log(portfolio);
-  
-  
-  const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
+  const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))  
+  const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));  
   const updateBalance = updatedPortfolio.map( portfolio => portfolio.units * portfolio.current_price);
-  const total = updateBalance.reduce( (a,b) => (a+b) );
-
-
-  // console.log("portfolio",updateBalance);
-  // console.log(total);
+  const total = updateBalance.reduce( (a,b) => (a+b), 0);
+  
   
   return (
     <Card className={classes.root}>
@@ -66,3 +58,4 @@ export default function PortBalance() {
     
   );
 }
+export default PortBalance;

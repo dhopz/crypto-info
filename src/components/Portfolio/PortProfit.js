@@ -7,6 +7,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { balance } from '../../config/balance';
 import { CryptoState } from '../../CryptoContext';
+import { numberWithCommas } from '../../components/CoinsTable'
 
 const useStyles = makeStyles({
   root: {
@@ -29,9 +30,6 @@ const useStyles = makeStyles({
   },
 });
 
-function numberWithCommas(x) {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-}
 
 export default function PortProfit() {
   const classes = useStyles();
@@ -39,12 +37,12 @@ export default function PortProfit() {
   const portfolioCoins = balance.map(element => element.id)
   const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))  
 
-  // const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
-  // const updateBalance = updatedPortfolio.map( portfolio => portfolio.units * portfolio.current_price);
-  // const initialBalance = balance.reduce((s, a) => s + a.value, 0); 
-  // const total = updateBalance.reduce( (a,b) => (a+b) );
+  const updatedPortfolio = portfolio.map(v => ({ ...v, ...balance.find(sp => sp.id === v.id) }));
+  const updateBalance = updatedPortfolio.map( portfolio => portfolio.units * portfolio.current_price);
+  const initialBalance = balance.reduce((s, a) => s + a.value, 0); 
+  const total = updateBalance.reduce( (a,b) => (a+b),0 );
 
-  // let profit = total >= 0;  
+  let profit = total >= 0;  
   
   return (
     <Card className={classes.root} style={{backgroundColor: "transparent"}}>
@@ -52,12 +50,12 @@ export default function PortProfit() {
         <Typography className={classes.title} align="left" color="textSecondary" gutterBottom>
           Profit
         </Typography>
-        {/* <Typography variant="h4" component="h2" align="left" style={{
+        <Typography variant="h4" component="h2" align="left" style={{
           color: profit > 0 ? "rgb(14, 203, 129)" : "red",
           fontWeight: 500,
         }}>
           {numberWithCommas((total-initialBalance).toFixed(2))}
-        </Typography> */}
+        </Typography>
       </CardContent>
     </Card>
     

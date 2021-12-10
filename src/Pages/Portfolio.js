@@ -66,6 +66,7 @@ const darkTheme = createTheme({
   },
 });
 
+
 export default function CenteredGrid() {
 
   const { currency, symbol, coins, loading, fetchCoins } = CryptoState(); 
