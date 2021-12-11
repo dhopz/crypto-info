@@ -23,7 +23,7 @@ import {
 const useStyles = makeStyles((theme) => ({
   container: {
     height: "100%", // So that grids 1 & 4 go all the way down
-    minHeight: 100, // Give minimum height to a div
+    minHeight: 150, // Give minimum height to a div
     border: "1px solid black",
     fontSize: 30,
     textAlign: "center"
@@ -42,12 +42,15 @@ const useStyles = makeStyles((theme) => ({
   containerTallc: {
     minHeight: 400 // This div has higher minimum height
   },
+  containerTalld: {
+    minHeight: 100 // This div has higher minimum height
+  },
   paper: {
     padding: theme.spacing(2),
     textAlign: 'center',
     color: theme.palette.text.secondary,
-    minHeight: 140,
-    maxHeight: 140,
+    minHeight: 120,
+    maxHeight: 120,
   },
   dialogPaper: {
     minHeight: '40vh',
@@ -145,8 +148,10 @@ export default function CenteredGrid() {
         </Grid>
         <Grid item container direction="column" xs spacing={2}>
           <Grid item xs>
-            <div className={clsx(classes.container, classes.containerTallb)}>
-              <PortInstruct/>
+            <div className={clsx(classes.container, classes.containerTalld)}>
+              <PortInstruct>
+                Instructions
+              </PortInstruct>
             </div>
           </Grid>
           <Grid item xs>

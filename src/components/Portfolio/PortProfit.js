@@ -14,7 +14,7 @@ const useStyles = makeStyles({
     backgroundColor: "transparent",
     border: "none", 
     boxShadow: "none",
-    height:125,
+    height:100,
     minWidth: 275,
     align:"left",
     textAlign: 'center',
@@ -43,6 +43,9 @@ export default function PortProfit() {
   const total = updateBalance.reduce( (a,b) => (a+b),0 );
 
   let profit = total >= 0;  
+
+  // console.log(coins);
+  // console.log(portfolio);
   
   return (
     <Card className={classes.root} style={{backgroundColor: "transparent"}}>

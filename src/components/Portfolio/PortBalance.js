@@ -4,10 +4,9 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import { CryptoState } from '../../CryptoContext';
-import { createBalance } from '../TotalBalance'
 import { balance } from '../../config/balance';
 import { numberWithCommas } from '../../components/CoinsTable'
-import { LinearProgress } from '@material-ui/core';
+
 
 const useStyles = makeStyles({
   root: {

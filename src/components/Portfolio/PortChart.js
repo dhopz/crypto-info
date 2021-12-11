@@ -7,6 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { HistoricalChart } from "../../config/api";
 import { Line } from "react-chartjs-2";
+import DropDownSelect from "./AssetSelect";
 import {
   CircularProgress,
   createTheme,
@@ -150,7 +151,7 @@ const CoinInfo = ({ coin }) => {
           />
         {portfolio[0].name}
       </Typography>   */}
-      <FormControl 
+      {/* <FormControl 
       className={classes.formControl} 
       align="left"                    
       style={{ 
@@ -170,7 +171,10 @@ const CoinInfo = ({ coin }) => {
           <MenuItem value={20}>Twenty</MenuItem>
           <MenuItem value={30}>Thirty</MenuItem>
         </Select>
-      </FormControl>
+      </FormControl> */}
+      <DropDownSelect>
+        Select Portfolio Asset
+      </DropDownSelect>
         <div className={classes.container}>
           {!historicData ? (
             <CircularProgress
