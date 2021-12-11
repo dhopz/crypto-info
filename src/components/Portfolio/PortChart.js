@@ -7,7 +7,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import { HistoricalChart } from "../../config/api";
 import { Line } from "react-chartjs-2";
-import DropDownSelect from "./AssetSelect";
+import TextField from "@material-ui/core/TextField";
 import {
   CircularProgress,
   createTheme,
@@ -42,11 +42,10 @@ ChartJS.register(
     LineElement
 );
 
-const CoinInfo = ({ coin }) => {
+const CoinInfo = () => {
   const [historicData, setHistoricData] = useState();
-  const [age, setAge] = useState('');
-  const [days, setDays] = useState(1);
-  const { currency, coins } = CryptoState();
+  const [days, setDays] = useState(30);
+  const { currency } = CryptoState();
 
   const useStyles = makeStyles((theme) => ({
     container: {
@@ -70,29 +69,35 @@ const CoinInfo = ({ coin }) => {
       float:"left",
       flexDirection:"left",
     },
-    selectEmpty: {
-      marginTop: theme.spacing(2),
-    },
   }));
 
   const portfolioCoins = balance.map(element => element.id)
-  const portfolio = coins.filter(coin => portfolioCoins.includes(coin.id))    
+  const [asset, setAsset] = useState(portfolioCoins[0])
 
-  //console.log(portfolio);
+  const handleChange = (e) => {
+    setAsset(e.target.value)
+    switchHistoricData()
+    }
+  
 
   const classes = useStyles();
 
-  const handleChange = (event) => {
-    setAge(event.target.value);
-  };
+  console.log(asset);
 
   const fetchHistoricData = async () => {
-    const { data } = await axios.get(HistoricalChart(portfolioCoins[0], days, currency));
+    const { data } = await axios.get(HistoricalChart(asset, days, currency));
 
     setHistoricData(data.prices);
   };
 
-//   console.log(coin);
+  function switchHistoricData() {
+    const fetchHistoricData = async () => {
+      const { data } = await axios.get(HistoricalChart(asset, days, currency));  
+      setHistoricData(data.prices);
+    };
+  }
+
+   
 
   useEffect(() => {
     fetchHistoricData();
@@ -111,70 +116,36 @@ const CoinInfo = ({ coin }) => {
   
 
   return (
-    <ThemeProvider theme={darkTheme}> 
-    {/* <img
-        src={portfolio[0]?.image}
-        alt={portfolio[0].name}
-        height="40"
-        style={{ borderBottom:"none" }}
-    />
-    <div
-        style={{ display: "flex", flexDirection: "column", borderBottom:"none", align:"left"}}
-    >
-        <span
-        style={{
-            textTransform: "uppercase",
-            fontSize: 15,
-            borderBottom:"none"                                                                                                  
-        }}
-        >
-        {portfolio[0].symbol}
-        </span>
-        <span style={{ color: "darkgrey", borderBottom:"none", fontSize:12 }}>
-        {portfolio[0].name}
-        </span> 
-      </div>     */}
-      {/* <Typography
-        variant="body2"
-        align="left"
+    <ThemeProvider theme={darkTheme}>
+      <FormControl 
+        className={classes.formControl} 
+        align="left"                    
         style={{ 
-          margin:10,
-          marginBottom:5,
-          fontFamily:"Roboto",
-        }}
-        >
-          <img
-            src={portfolio[0]?.image}
-            alt={portfolio[0].name}
-            height="20"
-            style={{ borderBottom:"none" }}
-          />
-        {portfolio[0].name}
-      </Typography>   */}
-      {/* <FormControl 
-      className={classes.formControl} 
-      align="left"                    
-      style={{ 
-        margin:10,
-        fontFamily:"Roboto",
-        color:"#00ADB5"
-        }}
-      >
-        <InputLabel id="demo-simple-select-label">Coin</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={age}
-          onChange={handleChange}
-        >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
-        </Select>
-      </FormControl> */}
-      <DropDownSelect>
-        Select Portfolio Asset
-      </DropDownSelect>
+            margin:10,
+            fontFamily:"Roboto",
+            color:"#00ADB5"
+            }}
+        >            
+            <div>
+                <TextField
+                id="asset-select"
+                select
+                label="Asset"
+                value={asset}
+                onChange={handleChange}
+                helperText="Please select Item from Portfolio"
+                SelectProps={{
+                    renderValue: (value) => value
+                }}
+                >
+                {portfolioCoins.map((asset) => (
+                    <MenuItem key={asset} value={asset}>
+                    {asset}
+                    </MenuItem>
+                ))}
+                </TextField>
+            </div>
+        </FormControl>
         <div className={classes.container}>
           {!historicData ? (
             <CircularProgress
