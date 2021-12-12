@@ -76,7 +76,8 @@ const CoinInfo = () => {
 
   const handleChange = (e) => {
     setAsset(e.target.value)
-    switchHistoricData()
+    fetchHistoricData()
+    console.log("do I get here?");
     }
   
 
@@ -89,14 +90,6 @@ const CoinInfo = () => {
 
     setHistoricData(data.prices);
   };
-
-  function switchHistoricData() {
-    const fetchHistoricData = async () => {
-      const { data } = await axios.get(HistoricalChart(asset, days, currency));  
-      setHistoricData(data.prices);
-    };
-  }
-
    
 
   useEffect(() => {
