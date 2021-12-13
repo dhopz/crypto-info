@@ -30,6 +30,7 @@ import {
     PointElement,
     LineElement,
   } from 'chart.js';
+import { plugins } from "pretty-format";
   
 ChartJS.register(
     CategoryScale,
@@ -44,7 +45,7 @@ ChartJS.register(
 
 const CoinInfo = () => {
   const [historicData, setHistoricData] = useState();
-  const [days, setDays] = useState(30);
+  const [days, setDays] = useState(1);
   const { currency } = CryptoState();
 
   const useStyles = makeStyles((theme) => ({
@@ -77,7 +78,6 @@ const CoinInfo = () => {
   const handleChange = (e) => {
     setAsset(e.target.value)
     fetchHistoricData()
-    console.log("do I get here?");
     }
   
 
@@ -107,7 +107,7 @@ const CoinInfo = () => {
   });
 
   
-
+   
   return (
     <ThemeProvider theme={darkTheme}>
       <FormControl 
@@ -161,13 +161,17 @@ const CoinInfo = () => {
 
                   datasets: [
                     {                    
+                      //backgroundColor: "#00ADB5",                                           
                       label: `Price ( Past ${days} Days ) in ${currency}`,
                       borderColor: "#00ADB5",
-                      data: historicData.map((coin) => coin[1]),                  
+                      data: historicData.map((coin) => coin[1]), 
+                      fill:true,
+                      backgroundColor: "#00ADB5",               
                     },
                   ],
                 }}
                 options={{
+
                   elements: {
                     point: {
                       radius: 1,

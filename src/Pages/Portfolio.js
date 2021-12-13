@@ -97,7 +97,7 @@ export default function CenteredGrid() {
                     >
                     Total Balance
                 </Typography>  
-                <Grid container spacing={24}>
+                <Grid container spacing={12}>
                   <Grid item md={4}>
                   <PortBalance/>
                   </Grid>

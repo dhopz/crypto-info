@@ -11,6 +11,7 @@ import { numberWithCommas } from "../CoinsTable";
 import { AiFillDelete } from "react-icons/ai";
 import { doc, setDoc } from '@firebase/firestore';
 import { db } from '../../firebase';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles({
   container:{
@@ -45,7 +46,7 @@ const useStyles = makeStyles({
   portfolio: {
     height: "5%",
     width: "100%",
-    backgroundColor: "#00FFF5",
+    backgroundColor: "#00ADB5",
     marginTop: 20,
   },
   watchlist: {
@@ -126,6 +127,8 @@ export default function UserSidebar() {
     }
   };
 
+  
+
   return (
     <div>
       {['right'].map((anchor) => (
@@ -167,10 +170,8 @@ export default function UserSidebar() {
               </span>
               <Button
                 variant="contained"
-                className={classes.portfolio}
-                onClick={logOut}
-              >
-                Portfolio
+                className={classes.portfolio}>
+                  <Link to="/portfolio" style={{ color:"black", fontFamily:"Roboto" }}>Portfolio</Link>
               </Button>
               <div className={classes.watchlist}>
                   <span style={{ fontSize: 15, textShadow: "0 0 5px black" }}>

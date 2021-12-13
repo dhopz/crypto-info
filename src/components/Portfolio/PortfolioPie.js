@@ -49,9 +49,9 @@ const PortfolioPie = () => {
       marginTop: 25,
       padding: 40,
       [theme.breakpoints.down("md")]: {
-        width: "50%",
+        width: "100%",
         marginTop: 0,
-        padding: 20,
+        padding: 50,
         paddingTop: 0,
       },
     },
