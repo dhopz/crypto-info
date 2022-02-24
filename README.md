@@ -1,5 +1,7 @@
-# crypto-info
+# Shinchaku Kusari
 Inspired by a Tik Tok Artist and a Web Design Account, I wanted to reinforce my learning from Kusari and learn how to create bespoke Data Visualisation tools to display Historic Prices. By creating a portfolio, the user can track portfolio performance using simple financial metrics.
+
+![Alt text](/portfolio.png?raw=true "Optional Title")
 
 ```
 export const balance = [
@@ -47,5 +49,5 @@ export const balance = [
     },
   ];
   ```
-![Alt text](/portfolio.png?raw=true "Optional Title")
+
 
